@@ -19,7 +19,7 @@ instances = '/home/gigad/Documents/instances'
 class MyWindow(Gtk.Window):
 
     def __init__(self):
-        Gtk.Window.__init__(self, title='clone de pipas launcher/multibound qui marche')
+        Gtk.Window.__init__(self, title='minimal multibound')
         Gtk.Window.set_default_size(self, 640, 480)
         Notify.init('Simple GTK3 Application')
 
