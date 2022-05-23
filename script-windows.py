@@ -12,7 +12,7 @@ class MyWindow(tk.Frame):
     def __init__(self,):
 
         super().__init__()
-        self.master.title("Hello World")
+        self.master.title("minimal multibound")
         self.obj = None
         self.init_ui()
 
