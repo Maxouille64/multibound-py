@@ -12,8 +12,8 @@ from gi.repository import Gtk
 from gi.repository import Notify
 
 sb_dir = \
-    '/home/gigad/.steam/debian-installation/steamapps/common/Starbound/linux/'
-instances = '/home/gigad/Documents/instances'
+    '/home/user/.steam/debian-installation/steamapps/common/Starbound/linux/'
+instances = '/home/user/Documents/instances'
 
 
 class MyWindow(Gtk.Window):
