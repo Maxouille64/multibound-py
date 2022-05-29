@@ -22,13 +22,11 @@ class MyWindow(tk.Frame):
 
         w = tk.Frame()
 
-        i=0
         for file in os.listdir(instances):
             d = os.path.join(instances, file)
             if os.path.isdir(d):
                 button = (tk.Button(self, text=file, width=30, command=partial(self.on_button_clicked, d)))
                 button.grid()
-            i=+1
 
         tk.Button(w, text="browse", width=30, command=partial(self.open_dir, instances)).pack()
         tk.Button(w, text="Close", command=self.on_close).pack()
