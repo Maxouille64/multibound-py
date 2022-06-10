@@ -1,5 +1,5 @@
 # multibound-py
-minimal multibound/pipas launcher like python script
+minimal starbound launcher/multibound/pipas launcher like, written in python
 
 setup:  
 1- put your starbound executable's directory path in sb_dir=...  
