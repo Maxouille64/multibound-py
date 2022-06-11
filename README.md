@@ -6,3 +6,6 @@ setup:
 2- put your instances path in instances=...  
 3- run script.py  
 4- enjoy  
+
+== if you dont have python installed on your computer you can still try this window 10 executable:
+https://github.com/Maxouille64/multibound-py/raw/main/multibound.exe
