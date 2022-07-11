@@ -1,11 +1,38 @@
 import tkinter as tk
 from tkinter import messagebox
+from tkinter.filedialog import askdirectory
 from functools import partial
 import os
 import json
+import sys
 
-sb_dir = 'C:\General\Steam\steamapps\common\Starbound\win64'
-instances = 'C:\Starbound MultiStorage'
+
+try:
+    with open('config.json', 'r') as config:
+        jsn = json.load(config)
+
+except IOError:
+    print('File not found, will create a new one.')
+    jsn = {"sb_dir":"","instances":""}
+    with open("config.json","w") as config:
+        json.dump(jsn, config, indent=4)
+
+with open("config.json","r+") as config:
+    jsn = json.load(config)
+    if not os.path.isdir(jsn['sb_dir']):
+        jsn['sb_dir'] = askdirectory(title="Select Starbound's executable folder")
+    if not os.path.isdir(jsn['instances']):
+        jsn['instances'] = askdirectory(title="Select Instances' Folder")
+
+    config.seek(0)	# <--- should reset file position to the beginning.
+    json.dump(jsn, config, indent=4)
+    config.truncate()	# remove remaining part
+    sb_dir=jsn['sb_dir']
+    instances=jsn['instances']
+
+
+print(sb_dir)
+print(instances)
 
 class MyWindow(tk.Frame):
 
