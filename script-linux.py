@@ -11,6 +11,8 @@ gi.require_version('Notify', '0.7')
 from gi.repository import Gtk
 from gi.repository import Notify
 
+print("Libs successfully imported !")
+
 sb_dir = \
     '/home/user/.steam/debian-installation/steamapps/common/Starbound/linux/'
 instances = '/home/user/Documents/instances'
@@ -23,7 +25,7 @@ class MyWindow(Gtk.Window):
         Gtk.Window.set_default_size(self, 640, 480)
         Notify.init('Simple GTK3 Application')
 
-        self.box = Gtk.Box(spacing=6)
+        self.box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
         self.add(self.box)
         self.button = []
         i = 0
@@ -31,8 +33,8 @@ class MyWindow(Gtk.Window):
             d = os.path.join(instances, file)
             if os.path.isdir(d):
                 self.button.append(Gtk.Button(label=file))
-                self.button[i].set_halign(Gtk.Align.CENTER)
-                self.button[i].set_valign(Gtk.Align.CENTER)
+                #self.button[i].set_halign(Gtk.Align.CENTER)
+                #self.button[i].set_valign(Gtk.Align.CENTER)
                 self.button[i].connect('clicked', self.on_button_clicked, d, file)
                 self.box.pack_start(self.button[i], True, True, 0)
                 print(d)
@@ -42,8 +44,10 @@ class MyWindow(Gtk.Window):
         self.browse.set_halign(Gtk.Align.CENTER)
         self.browse.set_valign(Gtk.Align.CENTER)
         self.browse.connect('clicked', self.open_dir, sb_dir)
-
+	
         self.box.pack_start(self.browse, True, True, 0)
+
+        
 
     def open_dir(self, widget, *data):
         os.system('xdg-open ' + data[0])
