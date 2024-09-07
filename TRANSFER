@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+import shutil
+import os
+import sys
+
+dr = sys.argv[1]
+
+for root, dirs, files in os.walk(dr):
+	for file in files:
+		print(file)
+		if ".pak" in file:
+			spl = root.split("/"); newname = spl[-1]; sup = ("/").join(spl[:-1])
+			print(newname)		
+			shutil.move(root+"/"+file, sup+"/"+newname+".pak"); shutil.rmtree(root)
