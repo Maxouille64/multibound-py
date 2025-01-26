@@ -14,8 +14,9 @@ from gi.repository import Notify
 print("Libs successfully imported !")
 
 sb_dir = \
-    '/home/user/.steam/debian-installation/steamapps/common/Starbound/linux/'
-instances = '/home/user/Documents/instances'
+    '/home/gigad/.steam/debian-installation/steamapps/common/Starbound/linux'
+#sb_dir = '/home/gigad/Documents/Starbound-master/dist'
+instances = '/home/gigad/Documents/instances'
 
 
 class MyWindow(Gtk.Window):
@@ -44,10 +45,10 @@ class MyWindow(Gtk.Window):
         self.browse.set_halign(Gtk.Align.CENTER)
         self.browse.set_valign(Gtk.Align.CENTER)
         self.browse.connect('clicked', self.open_dir, sb_dir)
-	
+
         self.box.pack_start(self.browse, True, True, 0)
 
-        
+
 
     def open_dir(self, widget, *data):
         os.system('xdg-open ' + data[0])
@@ -55,20 +56,21 @@ class MyWindow(Gtk.Window):
     def on_button_clicked(self, widget, *data):
         n = Notify.Notification.new('Starbound', data[1])
         n.show()
-        
+
         os.chdir(sb_dir)
-        with open(sb_dir + 'sbinit.config', 'r+') as f:
+        with open(sb_dir + '/sbinit.config', 'r+') as f:
         	jsn = json.load(f)
         	jsn['assetDirectories'][1] = data[0] + "/mods/" # <--- add `mods` value.
         	jsn['storageDirectory'] = data[0] + "/storage/" # <--- add `storage` value.
         	f.seek(0)	# <--- should reset file position to the beginning.
         	json.dump(jsn, f, indent=4)
         	f.truncate()	# remove remaining part
-        os.system('./starbound')
+        #os.system('gnome-terminal -x ./starbound')
+        os.system('gnome-terminal -x steam steam://rungameid/starbound')
+
 
 
 win = MyWindow()
 win.connect('destroy', Gtk.main_quit)
 win.show_all()
 Gtk.main()
-
